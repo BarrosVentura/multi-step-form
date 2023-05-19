@@ -1,22 +1,34 @@
 "use client";
 
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 
 interface FormProviderProps {
   children: React.ReactNode;
 }
 
-interface FormProviderContext {
+interface FormContent {
   active: number;
+  name?: string;
+  email?: string;
+  phone?: number;
+}
+interface FormProviderContext {
+  formContent: FormContent;
+  setFormContent: (data: FormContent) => void;
 }
 
 export const FormContext = createContext({} as FormProviderContext);
 
 export function FormProvider({ children }: FormProviderProps) {
+  const [formContent, setFormContent] = useState<FormContent>({
+    active: 1,
+  });
+
   return (
     <FormContext.Provider
       value={{
-        active: 1,
+        formContent,
+        setFormContent,
       }}
     >
       {children}

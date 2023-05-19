@@ -8,10 +8,12 @@ interface ListItemProps {
 }
 
 export function ListItem({ order, title }: ListItemProps) {
-  const { active } = useFormProvider();
+  const { formContent } = useFormProvider();
 
   const isActive =
-    active === order ? "bg-light-blue" : "text-white border border-white";
+    formContent.active === order
+      ? "bg-light-blue"
+      : "text-white border border-white";
   return (
     <li className="flex gap-5 items-center">
       <div>

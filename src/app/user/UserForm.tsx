@@ -4,8 +4,11 @@ import { Input } from "@/components/Input";
 import { User, userSchema } from "@/schemas/User";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useFormProvider } from "../form-provider";
 
 export function UserForm() {
+  const { setFormContent } = useFormProvider();
+
   const {
     register,
     handleSubmit,
@@ -16,6 +19,7 @@ export function UserForm() {
 
   function handleNextStep(data: User) {
     console.log({ data });
+    setFormContent({ active: 2, ...data });
   }
   return (
     <form
