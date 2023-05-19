@@ -1,6 +1,8 @@
 "use client";
 
-import { createContext, useContext, useState } from "react";
+import { ROUTES } from "@/routes/routes";
+import { usePathname, useRouter } from "next/navigation";
+import { createContext, useContext, useEffect, useState } from "react";
 
 interface FormProviderProps {
   children: React.ReactNode;
@@ -14,7 +16,7 @@ interface FormContent {
 }
 interface FormProviderContext {
   formContent: FormContent;
-  setFormContent: (data: FormContent) => void;
+  handleFormContent: (data: FormContent) => void;
 }
 
 export const FormContext = createContext({} as FormProviderContext);
@@ -23,12 +25,28 @@ export function FormProvider({ children }: FormProviderProps) {
   const [formContent, setFormContent] = useState<FormContent>({
     active: 1,
   });
+  const pathname = usePathname();
+
+  function handleFormContent(data: FormContent) {
+    setFormContent((state) => ({ ...state, ...data }));
+  }
+
+  useEffect(() => {
+    const currentPath = ROUTES.findIndex((route) =>
+      pathname.startsWith(`/${route}`)
+    );
+    console.log(currentPath, pathname);
+
+    if (currentPath > -1) {
+      handleFormContent({ active: currentPath + 1 });
+    }
+  }, [pathname]);
 
   return (
     <FormContext.Provider
       value={{
         formContent,
-        setFormContent,
+        handleFormContent,
       }}
     >
       {children}

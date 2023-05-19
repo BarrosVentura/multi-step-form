@@ -12,12 +12,14 @@ export function ListItem({ order, title }: ListItemProps) {
 
   const isActive =
     formContent.active === order
-      ? "bg-light-blue"
-      : "text-white border border-white";
+      ? "bg-light-blue border-light-blue"
+      : "text-white border-white";
   return (
     <li className="flex gap-5 items-center">
       <div>
-        <span className={`rounded-full ${isActive} py-2 px-3 leading-4  `}>
+        <span
+          className={`rounded-full border ${isActive} py-2 px-3 leading-4  `}
+        >
           {order}
         </span>
       </div>

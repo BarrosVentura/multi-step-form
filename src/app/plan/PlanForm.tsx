@@ -1,36 +1,33 @@
 "use client";
 
 import { Input } from "@/components/Input";
-import { User, userSchema } from "@/schemas/User";
+import { Plan, planSchema } from "@/schemas/Plan";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useFormProvider } from "../form-provider";
-import { useRouter } from "next/navigation";
 
-export function UserForm() {
+export function PlanForm() {
   const { handleFormContent } = useFormProvider();
-  const router = useRouter();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<User>({
-    resolver: zodResolver(userSchema),
+  } = useForm<Plan>({
+    resolver: zodResolver(planSchema),
   });
 
-  function handleNextStep(data: User) {
+  function handleNextStep(data: Plan) {
+    console.log({ data });
     handleFormContent({ active: 2, ...data });
-    router.push("/plan");
   }
-
   return (
     <form
       className="flex flex-col justify-between flex-1"
       onSubmit={handleSubmit(handleNextStep)}
     >
       <div>
-        <Input
+        {/* <Input
           register={register("name")}
           id="name"
           title="Name"
@@ -49,15 +46,13 @@ export function UserForm() {
         />
 
         <Input
-          register={register("phone", {
-            valueAsNumber: true,
-          })}
+          register={register("phone")}
           id="phone"
           title="Phone Number"
           type="tel"
           error={errors.phone}
           placeholder="e.g. +1 234 567 890"
-        />
+        /> */}
       </div>
 
       <button className="self-end bg-marine-blue text-light-gray py-3 px-5 rounded-lg hover:brightness-125 transition-all">
