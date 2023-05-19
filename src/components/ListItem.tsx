@@ -1,11 +1,17 @@
+"use client";
+
+import { useFormProvider } from "@/app/form-provider";
+
 interface ListItemProps {
-  active?: boolean;
   order: number;
   title: string;
 }
 
-export function ListItem({ active, order, title }: ListItemProps) {
-  const isActive = active ? "bg-light-blue" : "text-white border border-white";
+export function ListItem({ order, title }: ListItemProps) {
+  const { active } = useFormProvider();
+
+  const isActive =
+    active === order ? "bg-light-blue" : "text-white border border-white";
   return (
     <li className="flex gap-5 items-center">
       <div>
