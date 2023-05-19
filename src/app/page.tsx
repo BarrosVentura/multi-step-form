@@ -1,29 +1,18 @@
+import { ListItem } from "@/components/ListItem";
 import Image from "next/image";
 // import sidebarBackground from "../../public/images/bg-sidebar-desktop.svg";
 
 export default function Home() {
   return (
-    <section className="bg-white shadow-lg p-6 rounded-xl xl:w-[80%] flex gap-28">
+    <section className="grid grid-cols-[275px_1fr] bg-white shadow-lg p-6 rounded-xl xl:w-[80%] gap-28  min-h-[600px]">
       <aside
-        className={`bg-[url('../../public/images/bg-sidebar-desktop.svg')]`}
+        className={`bg-[url('../../public/images/bg-sidebar-desktop.svg')] bg-no-repeat h-full rounded-lg pl-8 pt-8`}
       >
-        <ul>
-          <li>
-            <span>step 1</span>
-            <h2>your info</h2>
-          </li>
-          <li>
-            <span>step 2</span>
-            <h2>select plan</h2>
-          </li>
-          <li>
-            <span>step 3</span>
-            <h2>add-ons</h2>
-          </li>
-          <li>
-            <span>step 4</span>
-            <h2>summary</h2>
-          </li>
+        <ul className="flex flex-col gap-6">
+          <ListItem active order={1} title="your info" />
+          <ListItem order={2} title="select plan" />
+          <ListItem order={3} title="add-ons" />
+          <ListItem order={4} title="summary" />
         </ul>
       </aside>
       <main>
