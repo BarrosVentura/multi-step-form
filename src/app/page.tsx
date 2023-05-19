@@ -1,9 +1,12 @@
 import Image from "next/image";
+// import sidebarBackground from "../../public/images/bg-sidebar-desktop.svg";
 
 export default function Home() {
   return (
     <section className="bg-white shadow-lg p-6 rounded-xl xl:w-[80%] flex gap-28">
-      <aside>
+      <aside
+        className={`bg-[url('../../public/images/bg-sidebar-desktop.svg')]`}
+      >
         <ul>
           <li>
             <span>step 1</span>
