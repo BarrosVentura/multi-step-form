@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+root {
+  --purplish-blue: hsl(243, 100%, 62%);
+}
+
+input {
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input:focus,
+input:active {
+  border-color: var(--purplish-blue);
+}

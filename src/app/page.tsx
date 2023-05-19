@@ -1,5 +1,3 @@
-import { ListItem } from "@/components/ListItem";
-
 export default function Home() {
   return (
     <main className="pt-8 flex flex-col pr-12">
@@ -40,7 +38,7 @@ export default function Home() {
           />
         </div>
 
-        <button className="self-end bg-marine-blue text-light-gray py-3 px-5 rounded-lg">
+        <button className="self-end bg-marine-blue text-light-gray py-3 px-5 rounded-lg hover:brightness-125 transition-all">
           Next Step
         </button>
       </form>
