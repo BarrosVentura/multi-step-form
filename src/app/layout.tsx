@@ -20,25 +20,23 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <FormProvider>
-        <body
-          className={`${ubuntu.className} bg-magnolia flex min-h-screen flex-col items-center justify-between p-24`}
-        >
-          <section className="grid grid-cols-[275px_1fr] bg-white shadow-lg p-6 rounded-xl xl:w-[80%] xl:max-w-[1440px] gap-28  min-h-[600px]">
-            <aside
-              className={`bg-[url('../../public/images/bg-sidebar-desktop.svg')] bg-no-repeat h-full rounded-lg pl-8 pt-8`}
-            >
-              <ul className="flex flex-col gap-6">
-                <ListItem order={1} title="your info" />
-                <ListItem order={2} title="select plan" />
-                <ListItem order={3} title="add-ons" />
-                <ListItem order={4} title="summary" />
-              </ul>
-            </aside>
-            {children}
-          </section>
-        </body>
-      </FormProvider>
+      <body
+        className={`${ubuntu.className} bg-magnolia flex min-h-screen flex-col items-center justify-between p-24`}
+      >
+        <section className="grid grid-cols-[275px_1fr] bg-white shadow-lg p-6 rounded-xl xl:w-[80%] xl:max-w-[1440px] gap-28  min-h-[600px]">
+          <aside
+            className={`bg-[url('../../public/images/bg-sidebar-desktop.svg')] bg-no-repeat h-full rounded-lg pl-8 pt-8`}
+          >
+            <ul className="flex flex-col gap-6">
+              <ListItem order={1} id={"user"} title="your info" />
+              <ListItem order={2} id={"plan"} title="select plan" />
+              <ListItem order={3} id={"addons"} title="add-ons" />
+              <ListItem order={4} id={"summary"} title="summary" />
+            </ul>
+          </aside>
+          <FormProvider>{children}</FormProvider>
+        </section>
+      </body>
     </html>
   );
 }

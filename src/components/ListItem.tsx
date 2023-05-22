@@ -1,17 +1,18 @@
 "use client";
 
-import { useFormProvider } from "@/app/form-provider";
+import { useSelectedLayoutSegment } from "next/navigation";
 
 interface ListItemProps {
+  id: string;
   order: number;
   title: string;
 }
 
-export function ListItem({ order, title }: ListItemProps) {
-  const { formContent } = useFormProvider();
+export function ListItem({ order, title, id }: ListItemProps) {
+  const layout = useSelectedLayoutSegment();
 
   const isActive =
-    formContent.active === order
+    id === layout
       ? "bg-light-blue border-light-blue"
       : "text-white border-white";
   return (
