@@ -1,1 +1,1 @@
-export const ROUTES = ["user", "plan"];
+export const ROUTES = ["user", "plan", "addons"];

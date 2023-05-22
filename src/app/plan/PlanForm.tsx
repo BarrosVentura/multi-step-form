@@ -29,6 +29,7 @@ export function PlanForm() {
 
   function handleNextStep(data: Plan) {
     handleFormContent({ ...data });
+    router.push("/addons");
   }
 
   function handleGoBack() {
