@@ -19,6 +19,9 @@ export function PlanForm() {
     control,
   } = useForm<Plan>({
     resolver: zodResolver(planSchema),
+    defaultValues: {
+      period: "monthly",
+    },
   });
 
   function handleNextStep(data: Plan) {
@@ -30,7 +33,6 @@ export function PlanForm() {
       className="flex flex-col justify-between flex-1"
       onSubmit={handleSubmit(handleNextStep)}
     >
-      {errors && <div>{JSON.stringify(errors, null, 2)}</div>}
       <div>
         <div className="grid grid-cols-3 gap-4">
           <SelectCard
@@ -61,8 +63,12 @@ export function PlanForm() {
           name="period"
           render={({ field }) => {
             return (
-              <>
-                <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">
+              <div className="w-full bg-magnolia mt-6 p-3 flex justify-center items-center gap-5 rounded-md">
+                <span
+                  className={`text-sm font-medium text-cool-gray ${
+                    field.value === "monthly" && "text-marine-blue"
+                  } `}
+                >
                   Monthly
                 </span>
                 <label className="relative inline-flex items-center cursor-pointer">
@@ -86,12 +92,16 @@ export function PlanForm() {
                       }
                     }}
                   />
-                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                  <div className="w-9 h-5 bg-marine-blue peer-focus:outline-none dark:peer-focus:ring-blue-800 rounded-full peer peer-checked:after:translate-x-full  after:content-[''] after:absolute after:top-[4px] after:left-[5px] after:bg-white after:rounded-full after:h-3 after:w-3 after:transition-all"></div>
                 </label>
-                <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">
+                <span
+                  className={`text-sm font-medium text-cool-gray ${
+                    field.value === "yearly" && "text-marine-blue"
+                  } `}
+                >
                   Yearly
                 </span>
-              </>
+              </div>
             );
           }}
         />
