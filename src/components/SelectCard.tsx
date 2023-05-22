@@ -40,7 +40,7 @@ export function SelectCard({
         type="radio"
         value={id}
         id={id}
-        className={`hidden ${peerStateVariants[id].peer}`}
+        className={`sr-only ${peerStateVariants[id].peer}`}
       />
       <label
         htmlFor={id}
