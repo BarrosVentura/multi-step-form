@@ -8,14 +8,17 @@ import IconArcade from "../../../public/images/icon-arcade.svg";
 import IconAdvanced from "../../../public/images/icon-advanced.svg";
 import IconPro from "../../../public/images/icon-pro.svg";
 import { SelectCard } from "@/components/SelectCard";
+import { useRouter } from "next/navigation";
+import { Switch } from "@/components/Switch";
 
 export function PlanForm() {
   const { handleFormContent } = useFormProvider();
+  const router = useRouter();
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { isValid },
     control,
   } = useForm<Plan>({
     resolver: zodResolver(planSchema),
@@ -25,9 +28,13 @@ export function PlanForm() {
   });
 
   function handleNextStep(data: Plan) {
-    console.log({ data });
-    // handleFormContent({ active: 2, ...data });
+    handleFormContent({ ...data });
   }
+
+  function handleGoBack() {
+    router.push("/user");
+  }
+
   return (
     <form
       className="flex flex-col justify-between flex-1"
@@ -61,55 +68,27 @@ export function PlanForm() {
         <Controller
           control={control}
           name="period"
-          render={({ field }) => {
-            return (
-              <div className="w-full bg-magnolia mt-6 p-3 flex justify-center items-center gap-5 rounded-md">
-                <span
-                  className={`text-sm font-medium text-cool-gray ${
-                    field.value === "monthly" && "text-marine-blue"
-                  } `}
-                >
-                  Monthly
-                </span>
-                <label className="relative inline-flex items-center cursor-pointer">
-                  <input
-                    type="checkbox"
-                    value={field.value}
-                    className="sr-only peer"
-                    onChange={({ target }) => {
-                      if (target.checked) {
-                        field.onChange({
-                          target: {
-                            value: "yearly",
-                          },
-                        });
-                      } else {
-                        field.onChange({
-                          target: {
-                            value: "monthly",
-                          },
-                        });
-                      }
-                    }}
-                  />
-                  <div className="w-9 h-5 bg-marine-blue peer-focus:outline-none dark:peer-focus:ring-blue-800 rounded-full peer peer-checked:after:translate-x-full  after:content-[''] after:absolute after:top-[4px] after:left-[5px] after:bg-white after:rounded-full after:h-3 after:w-3 after:transition-all"></div>
-                </label>
-                <span
-                  className={`text-sm font-medium text-cool-gray ${
-                    field.value === "yearly" && "text-marine-blue"
-                  } `}
-                >
-                  Yearly
-                </span>
-              </div>
-            );
-          }}
+          render={({ field }) => (
+            <Switch value={field.value} onChange={field.onChange} />
+          )}
         />
       </div>
+      <div className="flex justify-between items-center">
+        <button
+          onClick={handleGoBack}
+          className="text-cool-gray hover:text-marine-blue transition-all"
+        >
+          Go Back
+        </button>
 
-      <button className="self-end bg-marine-blue text-light-gray py-3 px-5 rounded-lg hover:brightness-125 transition-all">
-        Next Step
-      </button>
+        <button
+          type="submit"
+          disabled={!isValid}
+          className="bg-marine-blue text-light-gray py-3 px-5 rounded-lg hover:brightness-125 transition-all disabled:bg-cool-gray disabled:text-alabaster"
+        >
+          Next Step
+        </button>
+      </div>
     </form>
   );
 }

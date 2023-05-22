@@ -9,11 +9,14 @@ interface FormProviderProps {
 }
 
 interface FormContent {
-  active: number;
+  active?: number;
   name?: string;
   email?: string;
   phone?: number;
+  plan?: string;
+  period?: string;
 }
+
 interface FormProviderContext {
   formContent: FormContent;
   handleFormContent: (data: FormContent) => void;
@@ -35,12 +38,15 @@ export function FormProvider({ children }: FormProviderProps) {
     const currentPath = ROUTES.findIndex((route) =>
       pathname.startsWith(`/${route}`)
     );
-    console.log(currentPath, pathname);
 
     if (currentPath > -1) {
       handleFormContent({ active: currentPath + 1 });
     }
   }, [pathname]);
+
+  useEffect(() => {
+    console.log("Estado alterado: ", formContent);
+  }, [formContent]);
 
   return (
     <FormContext.Provider

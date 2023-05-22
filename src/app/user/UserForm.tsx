@@ -20,7 +20,7 @@ export function UserForm() {
   });
 
   function handleNextStep(data: User) {
-    handleFormContent({ active: 2, ...data });
+    handleFormContent({ ...data });
     router.push("/plan");
   }
 
