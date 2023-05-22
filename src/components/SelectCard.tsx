@@ -19,17 +19,17 @@ export function SelectCard({
   const peerStateVariants = {
     arcade: {
       peer: "peer/arcade",
-      border: "peer-checked/arcade:border-marine-blue",
+      border: "peer-checked/arcade:border-purplish-blue",
       background: "peer-checked/arcade:bg-alabaster",
     },
     advanced: {
       peer: "peer/advanced",
-      border: "peer-checked/advanced:border-marine-blue",
+      border: "peer-checked/advanced:border-purplish-blue",
       background: "peer-checked/advanced:bg-alabaster",
     },
     pro: {
       peer: "peer/pro",
-      border: "peer-checked/pro:border-marine-blue",
+      border: "peer-checked/pro:border-purplish-blue",
       background: "peer-checked/pro:bg-alabaster",
     },
   };
@@ -44,7 +44,7 @@ export function SelectCard({
       />
       <label
         htmlFor={id}
-        className={`border border-light-gray rounded-md p-3 ${peerStateVariants[id].border} ${peerStateVariants[id].background} cursor-pointer hover:border-marine-blue transition-colors`}
+        className={`border border-light-gray rounded-md p-3 ${peerStateVariants[id].border} ${peerStateVariants[id].background} cursor-pointer hover:border-purplish-blue transition-colors`}
       >
         <Image src={icon} alt="" />
         <p className="mt-8 text-marine-blue font-medium">{title}</p>
