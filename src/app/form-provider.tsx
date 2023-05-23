@@ -15,9 +15,9 @@ interface FormContent {
   name?: string;
   email?: string;
   phone?: number;
-  plan?: string;
+  plan?: "arcade" | "advanced" | "pro";
   period?: "yearly" | "monthly";
-  addons?: string[] | null;
+  addons?: ("online" | "storage" | "custom")[] | null;
 }
 
 interface FormProviderContext {

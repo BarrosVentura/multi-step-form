@@ -14,6 +14,9 @@ export default function AddonsPage() {
 
   const { register, handleSubmit } = useForm<Addons>({
     resolver: zodResolver(addonsSchema),
+    defaultValues: {
+      addons: formContent.addons,
+    },
   });
 
   const isYearly = formContent?.period === "yearly";

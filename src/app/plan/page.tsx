@@ -10,7 +10,7 @@ import { Switch } from "@/components/Switch";
 import { PLAN_PRICES } from "@/prices/plan";
 
 export default function Plan() {
-  const { handleFormContent } = useFormProvider();
+  const { handleFormContent, formContent } = useFormProvider();
   const router = useRouter();
 
   const {
@@ -22,7 +22,8 @@ export default function Plan() {
   } = useForm<Plan>({
     resolver: zodResolver(planSchema),
     defaultValues: {
-      period: "monthly",
+      period: formContent.period ?? "monthly",
+      plan: formContent.plan,
     },
   });
 
