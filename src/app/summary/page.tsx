@@ -5,7 +5,8 @@ import { useFormProvider } from "../form-provider";
 import { useRouter } from "next/navigation";
 
 export default function AddonsPage() {
-  const { formContent } = useFormProvider();
+  const { addonsBasedOnPeriod, planBasedOnPeriod, totalPrice } =
+    useFormProvider();
   const router = useRouter();
 
   function handleNextStep() {
@@ -14,7 +15,7 @@ export default function AddonsPage() {
   }
 
   function handleGoBack() {
-    router.push("/plan");
+    router.push("/addons");
   }
 
   return (
@@ -23,7 +24,9 @@ export default function AddonsPage() {
         <div className="flex flex-col bg-magnolia rounded-md p-6">
           <div className="flex justify-between items-center border-b pb-4 mb-4 border-light-gray">
             <div>
-              <h3 className="text-marine-blue font-medium">Arcade (Monthly)</h3>
+              <h3 className="text-marine-blue font-medium capitalize">
+                {planBasedOnPeriod.title}
+              </h3>
               <Link
                 href="/plan"
                 className="cursor-pointer text-sm underline text-cool-gray hover:text-purplish-blue transition-colors"
@@ -31,22 +34,27 @@ export default function AddonsPage() {
                 Change
               </Link>
             </div>
-            <span className="text-marine-blue font-bold ">$9/mo</span>
+            <span className="text-marine-blue font-bold ">
+              {planBasedOnPeriod.price}
+            </span>
           </div>
           <ul className="flex flex-col gap-3">
-            <li className="flex justify-between items-center">
-              <p className="text-sm text-cool-gray">Online service</p>
-              <span className="text-sm text-marine-blue">+$1/mo</span>
-            </li>
-            <li className="flex justify-between items-center">
-              <p className="text-sm text-cool-gray">Larger storage</p>
-              <span className="text-sm text-marine-blue">+$2/mo</span>
-            </li>
+            {addonsBasedOnPeriod.map((addon) => (
+              <li
+                key={addon.title}
+                className="flex justify-between items-center"
+              >
+                <p className="text-sm text-cool-gray">{addon.title}</p>
+                <span className="text-sm text-marine-blue">{addon.price}</span>
+              </li>
+            ))}
           </ul>
         </div>
         <div className="p-6 flex justify-between">
-          <p className="text-cool-gray text-sm">Total (per month)</p>
-          <span className="text-lg text-purplish-blue font-bold">+$12/mo</span>
+          <p className="text-cool-gray text-sm">{totalPrice.title}</p>
+          <span className="text-lg text-purplish-blue font-bold">
+            {totalPrice.price}
+          </span>
         </div>
       </div>
       <div className="w-full flex justify-between">
