@@ -46,7 +46,7 @@ export default function Plan() {
       onSubmit={handleSubmit(handleNextStep)}
     >
       <div>
-        <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
+        <div className="grid lg:grid-cols-3 grid-cols-1 gap-4">
           {PLAN_PRICES.map(({ name, icon, monthly, yearly }) => (
             <SelectCard
               key={name}

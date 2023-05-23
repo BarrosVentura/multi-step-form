@@ -97,8 +97,6 @@ export function FormProvider({ children }: FormProviderProps) {
     price: `$${getTotal()}/${isYearly ? "yr" : "mo"}`,
   };
 
-  console.log({ isYearly, selectedPlan, selectedAddons });
-
   function handleFormContent(data: FormContent) {
     setFormContent((state) => ({ ...state, ...data }));
   }
@@ -112,10 +110,6 @@ export function FormProvider({ children }: FormProviderProps) {
       handleFormContent({ active: currentPath + 1 });
     }
   }, [pathname]);
-
-  useEffect(() => {
-    console.log("Estado alterado: ", formContent);
-  }, [formContent]);
 
   return (
     <FormContext.Provider

@@ -11,7 +11,7 @@ export function Body({
 }) {
   return (
     <main
-      className={`flex flex-col md:pt-8 md:pr-12 md:pl-0 md:pb-0  md:w-auto md:mt-0 md:shadow-none rounded-lg bg-white w-[90%] m-auto mt-[-60px] p-6 shadow-lg ${
+      className={`flex flex-col lg:pt-8 lg:pr-12 lg:pl-0 lg:pb-0  lg:w-auto lg:mt-0 lg:shadow-none rounded-lg bg-white w-[90%] m-auto mt-[-60px] p-6 shadow-lg ${
         center && "items-center"
       }`}
     >
