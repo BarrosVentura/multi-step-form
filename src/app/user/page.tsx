@@ -8,7 +8,7 @@ import { useFormProvider } from "../form-provider";
 import { useRouter } from "next/navigation";
 
 export default function User() {
-  const { handleFormContent } = useFormProvider();
+  const { handleFormContent, formContent } = useFormProvider();
   const router = useRouter();
 
   const {
@@ -17,6 +17,11 @@ export default function User() {
     formState: { errors },
   } = useForm<User>({
     resolver: zodResolver(userSchema),
+    defaultValues: {
+      email: formContent.email,
+      name: formContent.name,
+      phone: formContent.phone,
+    },
   });
 
   function handleNextStep(data: User) {
