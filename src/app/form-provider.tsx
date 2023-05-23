@@ -14,7 +14,7 @@ interface FormContent {
   email?: string;
   phone?: number;
   plan?: string;
-  period?: string;
+  period?: "yearly" | "monthly";
   addons?: string[] | null;
 }
 

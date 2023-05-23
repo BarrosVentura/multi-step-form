@@ -6,14 +6,17 @@ import { useForm } from "react-hook-form";
 import { useFormProvider } from "../form-provider";
 import { useRouter } from "next/navigation";
 import { Checkbox } from "@/components/Checkbox";
+import { ADDONS_PRICES } from "@/prices/addons";
 
 export default function AddonsPage() {
-  const { handleFormContent } = useFormProvider();
+  const { handleFormContent, formContent } = useFormProvider();
   const router = useRouter();
 
   const { register, handleSubmit } = useForm<Addons>({
     resolver: zodResolver(addonsSchema),
   });
+
+  const isYearly = formContent?.period === "yearly";
 
   function handleNextStep(data: Addons) {
     handleFormContent({ ...data });
@@ -30,27 +33,16 @@ export default function AddonsPage() {
       onSubmit={handleSubmit(handleNextStep)}
     >
       <div className="flex flex-col gap-4">
-        <Checkbox
-          id="online"
-          title="Online service"
-          paragraph="Access to multiplayer games"
-          price="+$1/mo"
-          register={register("addons")}
-        />
-        <Checkbox
-          id="storage"
-          title="Larger storage"
-          paragraph="Extra 1TB of cloud save"
-          price="+$2/mo"
-          register={register("addons")}
-        />
-        <Checkbox
-          id="custom"
-          title="Customizable profile"
-          paragraph="Custom theme on your profile"
-          price="+$2/mo"
-          register={register("addons")}
-        />
+        {ADDONS_PRICES.map(({ monthly, name, yearly, paragraph, title }) => (
+          <Checkbox
+            key={name}
+            id={name}
+            title={title}
+            paragraph={paragraph}
+            price={`+$${isYearly ? yearly + "/yr" : monthly + "/mo"}`}
+            register={register("addons")}
+          />
+        ))}
       </div>
       <div className="flex justify-between items-center">
         <button

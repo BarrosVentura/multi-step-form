@@ -7,6 +7,7 @@ interface SelectCardProps {
   register: UseFormRegisterReturn;
   icon: string;
   price: string;
+  showDiscount: boolean;
 }
 
 export function SelectCard({
@@ -15,6 +16,7 @@ export function SelectCard({
   register,
   icon,
   price,
+  showDiscount,
 }: SelectCardProps) {
   const peerStateVariants = {
     arcade: {
@@ -47,8 +49,13 @@ export function SelectCard({
         className={`border border-light-gray rounded-md p-3 ${peerStateVariants[id].border} ${peerStateVariants[id].background} cursor-pointer hover:border-purplish-blue transition-colors`}
       >
         <Image src={icon} alt="" />
-        <p className="mt-8 text-marine-blue font-medium">{title}</p>
+        <p className="capitalize mt-8 text-marine-blue font-medium">{title}</p>
         <span className="text-cool-gray text-sm">{price}</span>
+        {showDiscount && (
+          <span className="text-xs text-marine-blue block mt-1">
+            2 months free
+          </span>
+        )}
       </label>
     </>
   );

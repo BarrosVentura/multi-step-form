@@ -4,12 +4,10 @@ import { Plan, planSchema } from "@/schemas/Plan";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { useFormProvider } from "../form-provider";
-import IconArcade from "../../../public/images/icon-arcade.svg";
-import IconAdvanced from "../../../public/images/icon-advanced.svg";
-import IconPro from "../../../public/images/icon-pro.svg";
 import { SelectCard } from "@/components/SelectCard";
 import { useRouter } from "next/navigation";
 import { Switch } from "@/components/Switch";
+import { PLAN_PRICES } from "@/prices/plan";
 
 export default function Plan() {
   const { handleFormContent } = useFormProvider();
@@ -19,6 +17,7 @@ export default function Plan() {
     register,
     handleSubmit,
     formState: { isValid },
+    watch,
     control,
   } = useForm<Plan>({
     resolver: zodResolver(planSchema),
@@ -26,6 +25,8 @@ export default function Plan() {
       period: "monthly",
     },
   });
+
+  const currentPeriodState = watch("period");
 
   function handleNextStep(data: Plan) {
     handleFormContent({ ...data });
@@ -43,27 +44,21 @@ export default function Plan() {
     >
       <div>
         <div className="grid grid-cols-3 gap-4">
-          <SelectCard
-            register={register("plan")}
-            icon={IconArcade}
-            id="arcade"
-            price="$9/mo"
-            title="Arcade"
-          />
-          <SelectCard
-            register={register("plan")}
-            icon={IconAdvanced}
-            id="advanced"
-            price="$12/mo"
-            title="Advanced"
-          />
-          <SelectCard
-            register={register("plan")}
-            icon={IconPro}
-            id="pro"
-            price="$15/mo"
-            title="Pro"
-          />
+          {PLAN_PRICES.map(({ name, icon, monthly, yearly }) => (
+            <SelectCard
+              key={name}
+              register={register("plan")}
+              icon={icon}
+              id={name}
+              price={`$${
+                currentPeriodState === "monthly"
+                  ? monthly + "/mo"
+                  : yearly + "/yr"
+              }`}
+              title={name}
+              showDiscount={currentPeriodState === "yearly"}
+            />
+          ))}
         </div>
 
         <Controller
