@@ -4,14 +4,13 @@ import Link from "next/link";
 import { useFormProvider } from "../form-provider";
 import { useRouter } from "next/navigation";
 
-export default function AddonsPage() {
+export default function SummaryPage() {
   const { addonsBasedOnPeriod, planBasedOnPeriod, totalPrice } =
     useFormProvider();
   const router = useRouter();
 
-  function handleNextStep() {
-    // handleFormContent({ ...data });
-    // router.push("/summary");
+  function handleConfirm() {
+    router.push("/thankyou");
   }
 
   function handleGoBack() {
@@ -66,8 +65,8 @@ export default function AddonsPage() {
         </button>
 
         <button
-          type="submit"
           className="bg-purplish-blue text-light-gray py-3 px-5 rounded-lg hover:opacity-40 transition-all disabled:bg-cool-gray disabled:text-alabaster"
+          onClick={handleConfirm}
         >
           Confirm
         </button>
