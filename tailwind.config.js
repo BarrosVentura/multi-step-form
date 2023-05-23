@@ -19,6 +19,10 @@ module.exports = {
         alabaster: "hsl(231, 100%, 99%)",
         white: "hsl(0, 0%, 100%)",
       },
+      backgroundImage: {
+        "desktop-pattern": "url('/images/bg-sidebar-desktop.svg')",
+        "mobile-pattern": "url('/images/bg-sidebar-mobile.svg')",
+      },
     },
   },
   plugins: [],

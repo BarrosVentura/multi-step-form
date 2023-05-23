@@ -24,7 +24,7 @@ export function ListItem({ order, title, id }: ListItemProps) {
           {order}
         </span>
       </div>
-      <div>
+      <div className="hidden lg:block">
         <span className="font-light uppercase text-xs text-cool-gray">
           step {order}
         </span>
