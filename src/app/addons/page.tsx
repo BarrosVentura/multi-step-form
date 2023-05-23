@@ -16,9 +16,8 @@ export default function AddonsPage() {
   });
 
   function handleNextStep(data: Addons) {
-    // handleFormContent({ ...data });
-    // router.push("/addons");
-    console.log({ data });
+    handleFormContent({ ...data });
+    router.push("/summary");
   }
 
   function handleGoBack() {

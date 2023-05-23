@@ -15,6 +15,7 @@ interface FormContent {
   phone?: number;
   plan?: string;
   period?: string;
+  addons?: string[] | null;
 }
 
 interface FormProviderContext {
