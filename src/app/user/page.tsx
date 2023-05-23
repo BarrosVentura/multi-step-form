@@ -6,6 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useFormProvider } from "../form-provider";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/Button";
+import { ButtonContainer } from "@/components/ButtonContainer";
 
 export default function User() {
   const { handleFormContent, formContent } = useFormProvider();
@@ -64,12 +66,9 @@ export default function User() {
           placeholder="e.g. +1 234 567 890"
         />
       </div>
-
-      <div className="md:static md:bg-transparent md:p-0 md:border-transparent absolute bottom-0 left-0 bg-white w-full p-6 flex justify-end border-t ">
-        <button className=" bg-marine-blue text-light-gray py-3 px-5 rounded-md hover:brightness-125 transition-all">
-          Next Step
-        </button>
-      </div>
+      <ButtonContainer>
+        <Button>Next Step</Button>
+      </ButtonContainer>
     </form>
   );
 }

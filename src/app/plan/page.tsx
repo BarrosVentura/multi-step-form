@@ -8,6 +8,7 @@ import { SelectCard } from "@/components/SelectCard";
 import { useRouter } from "next/navigation";
 import { Switch } from "@/components/Switch";
 import { PLAN_PRICES } from "@/prices/plan";
+import { ButtonContainer } from "@/components/ButtonContainer";
 
 export default function Plan() {
   const { handleFormContent, formContent } = useFormProvider();
@@ -44,7 +45,7 @@ export default function Plan() {
       onSubmit={handleSubmit(handleNextStep)}
     >
       <div>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
           {PLAN_PRICES.map(({ name, icon, monthly, yearly }) => (
             <SelectCard
               key={name}
@@ -70,7 +71,7 @@ export default function Plan() {
           )}
         />
       </div>
-      <div className="flex justify-between items-center">
+      <ButtonContainer>
         <button
           onClick={handleGoBack}
           className="text-cool-gray hover:text-marine-blue transition-all"
@@ -85,7 +86,7 @@ export default function Plan() {
         >
           Next Step
         </button>
-      </div>
+      </ButtonContainer>
     </form>
   );
 }

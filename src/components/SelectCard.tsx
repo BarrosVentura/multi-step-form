@@ -46,16 +46,20 @@ export function SelectCard({
       />
       <label
         htmlFor={id}
-        className={`border border-light-gray rounded-md p-3 ${peerStateVariants[id].border} ${peerStateVariants[id].background} cursor-pointer hover:border-purplish-blue transition-colors`}
+        className={`border border-light-gray rounded-md p-3 ${peerStateVariants[id].border} ${peerStateVariants[id].background} cursor-pointer hover:border-purplish-blue transition-colors md:block flex gap-4`}
       >
         <Image src={icon} alt="" />
-        <p className="capitalize mt-8 text-marine-blue font-medium">{title}</p>
-        <span className="text-cool-gray text-sm">{price}</span>
-        {showDiscount && (
-          <span className="text-xs text-marine-blue block mt-1">
-            2 months free
-          </span>
-        )}
+        <div>
+          <p className="capitalize md:mt-8 text-marine-blue font-medium">
+            {title}
+          </p>
+          <span className="text-cool-gray text-sm">{price}</span>
+          {showDiscount && (
+            <span className="text-xs text-marine-blue block mt-1">
+              2 months free
+            </span>
+          )}
+        </div>
       </label>
     </>
   );
