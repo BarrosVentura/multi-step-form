@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { Switch } from "@/components/Switch";
 import { PLAN_PRICES } from "@/prices/plan";
 import { ButtonContainer } from "@/components/ButtonContainer";
+import { Button } from "@/components/Button";
 
 export default function Plan() {
   const { handleFormContent, formContent } = useFormProvider();
@@ -78,14 +79,9 @@ export default function Plan() {
         >
           Go Back
         </button>
-
-        <button
-          type="submit"
-          disabled={!isValid}
-          className="bg-marine-blue text-light-gray py-3 px-5 rounded-lg hover:brightness-125 transition-all disabled:bg-cool-gray disabled:text-alabaster"
-        >
+        <Button disabled={!isValid} type="submit">
           Next Step
-        </button>
+        </Button>
       </ButtonContainer>
     </form>
   );

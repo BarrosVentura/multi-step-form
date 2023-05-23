@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useFormProvider } from "../form-provider";
 import { useRouter } from "next/navigation";
+import { ButtonContainer } from "@/components/ButtonContainer";
 
 export default function SummaryPage() {
   const { addonsBasedOnPeriod, planBasedOnPeriod, totalPrice } =
@@ -56,7 +57,7 @@ export default function SummaryPage() {
           </span>
         </div>
       </div>
-      <div className="w-full flex justify-between">
+      <ButtonContainer>
         <button
           onClick={handleGoBack}
           className="text-cool-gray hover:text-marine-blue transition-all"
@@ -70,7 +71,7 @@ export default function SummaryPage() {
         >
           Confirm
         </button>
-      </div>
+      </ButtonContainer>
     </div>
   );
 }

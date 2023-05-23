@@ -7,6 +7,8 @@ import { useFormProvider } from "../form-provider";
 import { useRouter } from "next/navigation";
 import { Checkbox } from "@/components/Checkbox";
 import { ADDONS_PRICES } from "@/prices/addons";
+import { ButtonContainer } from "@/components/ButtonContainer";
+import { Button } from "@/components/Button";
 
 export default function AddonsPage() {
   const { handleFormContent, formContent } = useFormProvider();
@@ -47,7 +49,8 @@ export default function AddonsPage() {
           />
         ))}
       </div>
-      <div className="flex justify-between items-center">
+
+      <ButtonContainer>
         <button
           onClick={handleGoBack}
           className="text-cool-gray hover:text-marine-blue transition-all"
@@ -55,13 +58,8 @@ export default function AddonsPage() {
           Go Back
         </button>
 
-        <button
-          type="submit"
-          className="bg-marine-blue text-light-gray py-3 px-5 rounded-lg hover:brightness-125 transition-all disabled:bg-cool-gray disabled:text-alabaster"
-        >
-          Next Step
-        </button>
-      </div>
+        <Button type="submit">Next Step</Button>
+      </ButtonContainer>
     </form>
   );
 }
