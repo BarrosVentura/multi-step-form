@@ -65,9 +65,11 @@ export default function User() {
         />
       </div>
 
-      <button className="self-end bg-marine-blue text-light-gray py-3 px-5 rounded-lg hover:brightness-125 transition-all">
-        Next Step
-      </button>
+      <div className="md:static md:bg-transparent md:p-0 md:border-transparent absolute bottom-0 left-0 bg-white w-full p-6 flex justify-end border-t ">
+        <button className=" bg-marine-blue text-light-gray py-3 px-5 rounded-md hover:brightness-125 transition-all">
+          Next Step
+        </button>
+      </div>
     </form>
   );
 }
